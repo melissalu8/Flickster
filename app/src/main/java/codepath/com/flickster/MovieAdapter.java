@@ -33,7 +33,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public Config getConfig() {
         return config;
     }
-
+    //hello!
     public void setConfig(Config config) {
         this.config = config;
     }
