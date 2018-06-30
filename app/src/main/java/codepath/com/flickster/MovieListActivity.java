@@ -17,6 +17,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import codepath.com.flickster.models.Config;
 import codepath.com.flickster.models.Movie;
 import cz.msebera.android.httpclient.Header;
@@ -35,18 +37,20 @@ public class MovieListActivity extends AppCompatActivity {
     AsyncHttpClient client;
     // the list of currently playing movies
     ArrayList<Movie> movies;
-    // the recylcer view
-    RecyclerView rvMovies;
     // the adapter wired to the recycler view
     MovieAdapter adapter;
     // image config
     Config config;
+
+    // Automatically finds each field by the specified ID.
+    @BindView(R.id.rvMovies) RecyclerView rvMovies;;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
+        ButterKnife.bind(this);
         // initalize the client
         client = new AsyncHttpClient();
         // intialize the list of movies
@@ -55,7 +59,6 @@ public class MovieListActivity extends AppCompatActivity {
         adapter = new MovieAdapter(movies);
 
         // resolve the recycler view and connect a layout manager and the adapter
-        rvMovies = (RecyclerView) findViewById(R.id.rvMovies);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
         rvMovies.setAdapter(adapter);
 
@@ -99,7 +102,7 @@ public class MovieListActivity extends AppCompatActivity {
         });
     }
 
-    // get teh configuration from the API
+    // get the configuration from the API
     private void getConfiguration() {
         // create the url
         String url = API_BASE_URL + "/configuration";

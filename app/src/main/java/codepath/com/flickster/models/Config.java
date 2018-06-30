@@ -3,7 +3,9 @@ package codepath.com.flickster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel // annotation indicates class is Parcelable
 public class Config {
 
     // the base url for loading images
@@ -13,6 +15,9 @@ public class Config {
     // the backdrop to use when fetching images
     String backdropSize;
 
+
+    // no-arg, empty constructor required for Parceler
+    public Config() {}
 
     public Config(JSONObject object) throws JSONException {
         JSONObject images = object.getJSONObject("images");
@@ -36,5 +41,9 @@ public class Config {
 
     public String getPosterSize() {
         return posterSize;
+    }
+
+    public String getBackdropSize() {
+        return backdropSize;
     }
 }
